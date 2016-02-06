@@ -74,7 +74,7 @@ class SalesFactSerializer(serializers.ModelSerializer):
     class Meta:
         model=NSalesFact1997
 
-        field=('id','product_id','time_id','customer_id')
+        field=('product_id','time_id','customer_id')
 
 
 

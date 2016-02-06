@@ -1,6 +1,7 @@
 
 from django.contrib import admin
-from smartretailapp.models import NProduct, NProductClass,NOffers,NProdStore,NSensors,NCustomer,NStore,NSalesFact1997,NAisle,NTimeByDay
+from smartretailapp.models import NProduct, NProductClass,NOffers,NProdStore,NSensors,NCustomer,\
+    NStore,NSalesFact1997,NAisle,NTimeByDay,UserProfile
 
 
 # Register your models here.
@@ -59,3 +60,4 @@ admin.site.register(NOffers,OfferAdmin)
 admin.site.register(NProdStore,ProductStoreAdmin)
 admin.site.register(NSensors,SensorAdmin)
 admin.site.register(NSalesFact1997,SalesFactAdmin)
+admin.site.register(UserProfile)
