@@ -7,26 +7,6 @@ from django.db.models.signals import post_save
 from django.db import models
 
 
-class UserProfile(models.Model):
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_role = models.CharField(max_length=200)
-    user_class = models.CharField(max_length=200)
-    user_age = models.CharField(max_length=100)
-    user_cc_details = models.CharField(max_length=200)
-    user_phone = models.CharField(max_length=100)
-    user_addr = models.CharField(max_length=200)
-
-def __unicode__(self):
-    return "%s's profile" % self.user
-
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-       profile, created = UserProfile.objects.get_or_create(user=instance)
-
-post_save.connect(create_user_profile, sender=User)
-
-
 class NAisle(models.Model):
     aisle_id = models.IntegerField(primary_key=True)
     aisle_num = models.CharField(max_length=45, blank=True, null=True)
@@ -46,6 +26,7 @@ class NAisle(models.Model):
 
 
 class NCustomer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE ,primary_key=True)
     customer_id = models.IntegerField()
     account_num = models.BigIntegerField()
     lname = models.CharField(max_length=30)
@@ -77,7 +58,7 @@ class NCustomer(models.Model):
     fullname = models.CharField(max_length=60)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'N_CUSTOMER'
 
 
@@ -124,7 +105,7 @@ class NProduct(models.Model):
     shelf_width = models.FloatField(blank=True, null=True)
     shelf_height = models.FloatField(blank=True, null=True)
     shelf_depth = models.FloatField(blank=True, null=True)
-    product_img_url = models.ImageField(max_length=500, upload_to='img', blank=True, null=True)
+    product_img_url = models.ImageField(max_length=500, blank=True, null=True)
     product_img = models.TextField(blank=True, null=True)
     product_price = models.FloatField(blank=True, null=True)
     prod_attr1 = models.CharField(max_length=1000, blank=True, null=True)
@@ -133,7 +114,6 @@ class NProduct(models.Model):
     prod_attr4 = models.FloatField(blank=True, null=True)
     prod_attr5 = models.DateTimeField(blank=True, null=True)
     prod_attr6 = models.DateTimeField(blank=True, null=True)
-
 
     class Meta:
         managed = False
@@ -253,7 +233,3 @@ class NTimeByDay(models.Model):
     class Meta:
         managed = False
         db_table = 'N_TIME_BY_DAY'
-
-
-
-

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework import generics
-from models import NProduct,NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay, UserProfile
+from models import NProduct,NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay
 from serializers import ProductSerializer, CategorySerializer,AisleSerializer,OfferSerializer,CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -155,10 +155,10 @@ def register_view(request):
     user.first_name = first_name
     user.last_name = last_name
 
-    userprofile = UserProfile.objects.get_or_create(user)
-    userprofile.user_role = user_role
-    userprofile.user_class = user_class
-    userprofile.user_age = user_age
+    #userprofile = UserProfile.objects.get_or_create(user)
+    #userprofile.user_role = user_role
+    #userprofile.user_class = user_class
+    #userprofile.user_age = user_age
     user.user_cc_details = user_cc_details
     user.user_phone = user_phone
     user.user_addr = user_addr

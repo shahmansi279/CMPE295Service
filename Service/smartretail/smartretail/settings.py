@@ -78,16 +78,15 @@ WSGI_APPLICATION = 'smartretail.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.mysql',
-           'NAME': 'G5CMPE295',
-           'USER': 'root',
-           'PASSWORD': 'sjsu',
-           'HOST': 'localhost',
-           'PORT': '3306',
-       }
-   }
-
+      'default': {
+          'ENGINE': 'django.db.backends.mysql',
+          'NAME': 'G5CMPE295',
+          'USER': 'G5CMPE295B',
+          'PASSWORD': 'G5CMPE295B',
+          'HOST': 'awsg5cmpe295b.calw7bi2ea5b.us-west-1.rds.amazonaws.com',
+          'PORT': '3306',
+      }
+  }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
