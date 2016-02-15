@@ -6,6 +6,9 @@ from serializers import ProductSerializer, CategorySerializer,AisleSerializer,Of
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
+from django.core import serializers
+from django.db import connection
+import json
 
 class CategoryList(generics.ListCreateAPIView):
 
@@ -152,17 +155,12 @@ def register_view(request):
     user_addr = request.GET.get('user_addr','')
 
     user = User.objects.create_user(username, email, password)
-    user.first_name = first_name
-    user.last_name = last_name
 
-    #userprofile = UserProfile.objects.get_or_create(user)
-    #userprofile.user_role = user_role
-    #userprofile.user_class = user_class
-    #userprofile.user_age = user_age
-    user.user_cc_details = user_cc_details
-    user.user_phone = user_phone
-    user.user_addr = user_addr
-    user.save()
+
+    e=NCustomer()
+    e.user=user
+    e.customer_id=user_role
+    e.save()
 
     return JsonResponse(['Success'], safe=False)
 
@@ -177,8 +175,13 @@ def resetPassword_view(request):
     return JsonResponse(['Password changed'], safe=False)
 
 
-def home(request):
+def customCategory(self):
 
-    return HttpResponse("Hello World")
+        cursor = connection.cursor()
+        cursor.execute("SELECT DISTINCT product_department , prodclass_attr1 FROM G5CMPE295.N_PRODUCT_CLASS")
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
 
 # Create your views here.

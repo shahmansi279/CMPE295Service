@@ -11,13 +11,17 @@ urlpatterns = patterns('',
     url(r'^login/$',views.login_view),
     url(r'^logout/$',views.logout_view),
     url(r'^reset_password/$',views.resetPassword_view),
+    url(r'^category/$',views.customCategory),
+
 
     url(r'^api/product/$', views.ProductList.as_view()),
     url(r'^api/product/(?P<pk>[0-9]+)/$', views.ProductDetail.as_view()),
     url(r'^api/productsForCategory/(?P<category>.+)/$', views.ProductFilter.as_view()),
 
-    url(r'^api/category/$', views.CategoryList.as_view()),
-    url(r'^api/category/(?P<pk>[0-9]+)/$', views.CategoryDetail.as_view()),
+
+
+    url(r'^api/productclass/$', views.CategoryList.as_view()),
+    url(r'^api/productclass/(?P<pk>[0-9]+)/$', views.CategoryDetail.as_view()),
 
     url(r'^api/aisle/$', views.AisleList.as_view()),
     url(r'^api/aisle/(?P<pk>[0-9]+)/$', views.AisleDetail.as_view()),
