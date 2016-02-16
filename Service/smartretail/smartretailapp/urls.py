@@ -5,14 +5,13 @@ import views
 
 urlpatterns = patterns('',
 
-    url(r'^home/$',views.home,name='home'),
-    
+
     url(r'^register/$',views.register_view),
     url(r'^login/$',views.login_view),
     url(r'^logout/$',views.logout_view),
     url(r'^reset_password/$',views.resetPassword_view),
-    url(r'^category/$',views.customCategory),
-
+    url(r'^category/$',views.category_list),
+     url(r'^products/(?P<category>.+)/$', views.product_list_for_category),
 
     url(r'^api/product/$', views.ProductList.as_view()),
     url(r'^api/product/(?P<pk>[0-9]+)/$', views.ProductDetail.as_view()),

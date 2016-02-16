@@ -15,6 +15,11 @@ class CategoryList(generics.ListCreateAPIView):
     queryset=NProductClass.objects.all()
     serializer_class=CategorySerializer
 
+    def get_queryset(self):
+
+        category = self.kwargs['category']
+        return NProduct.objects.filter(product_class=category)
+
 
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
 
@@ -174,14 +179,34 @@ def resetPassword_view(request):
     user.save()
     return JsonResponse(['Password changed'], safe=False)
 
+''' Fetches the distinct category and image for the category '''
 
-def customCategory(self):
+
+def category_list(self):
 
         cursor = connection.cursor()
         cursor.execute("SELECT DISTINCT product_department , prodclass_attr1 FROM G5CMPE295.N_PRODUCT_CLASS")
         data = cursor.fetchall()
 
         return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+
+def product_list_for_category(self):
+
+        category_name = self.kwargs('category')
+        cursor = connection.cursor()
+        cursor.execute("SELECT product_class_id  FROM G5CMPE295.N_PRODUCT_CLASS where product_department=%s",category_name)
+        data = cursor.fetchall()
+        product_data=[]
+
+        for row in data:
+
+            cursor.execute("SELECT product_name, product_id FROM G5CMPE295.N_PRODUCT where product_class_id=%s",row)
+            product_data.append(cursor.fetchall())
+
+        return HttpResponse(json.dumps(product_data), content_type='application/json;charset=utf8')
+
+
 
 
 # Create your views here.
