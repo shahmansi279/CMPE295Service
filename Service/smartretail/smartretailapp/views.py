@@ -132,16 +132,16 @@ def login_view(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            return JsonResponse(['Logged In'], safe=False)
+            return JsonResponse({'status': 'success'})
 
-        else: return JsonResponse(['Error: Disabled Account'], safe=False)
-    else: return JsonResponse(['Error: Invalid Credentials'], safe=False)
+        else: return JsonResponse({'status': 'error: disabled account'})
+    else: return JsonResponse({'status': 'error: invalid credentials'})
 
 
 def logout_view(request):
 
     logout(request)
-    return JsonResponse(['Success'], safe=False)
+    return JsonResponse({'status': 'success'})
 
 
 
@@ -167,17 +167,19 @@ def register_view(request):
     e.customer_id=user_role
     e.save()
 
-    return JsonResponse(['Success'], safe=False)
+    return JsonResponse({'status': 'success'})
 
 
 def resetPassword_view(request):
 
     username = request.GET.get('username','')
     new_password = request.GET.get('new_password','')
-    user = User.objects.get(username=username)
-    user.set_password(new_password)
-    user.save()
-    return JsonResponse(['Password changed'], safe=False)
+    try:
+        user = User.objects.get(username=username)
+        user.set_password(new_password)
+        user.save()
+        return JsonResponse({'status': 'success'})
+    except User.DoesNotExist: return JsonResponse({'status': 'error'})
 
 ''' Fetches the distinct category and image for the category '''
 

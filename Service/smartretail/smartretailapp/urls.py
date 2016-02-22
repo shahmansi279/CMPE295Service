@@ -34,8 +34,8 @@ urlpatterns = patterns('',
     url(r'^api/prod_store/$', views.ProductStoreList.as_view()),
     url(r'^api/prod_store/(?P<pk>[0-9]+)/$', views.ProductStoreDetail.as_view()),
 
-    url(r'^api/customer/$', views.StoreList.as_view()),
-    url(r'^api/customer/(?P<pk>[0-9]+)/$', views.StoreDetail.as_view()),
+    url(r'^api/customer/$', views.CustomerList.as_view()),
+    url(r'^api/customer/(?P<pk>[0-9]+)/$', views.CustomerDetail.as_view()),
 
     url(r'^api/prod_store/$', views.ProductStoreList.as_view()),
     url(r'^api/prod_store/(?P<pk>[0-9]+)/$', views.ProductStoreDetail.as_view()),
