@@ -163,8 +163,9 @@ def register_view(request):
 
 
     e=NCustomer()
-    e.user=user
-    e.customer_id=user_role
+    e.customer=user
+    e.fname=first_name
+    e.lname=last_name
     e.save()
 
     return JsonResponse({'status': 'success'})
