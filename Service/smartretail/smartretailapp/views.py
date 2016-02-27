@@ -121,27 +121,28 @@ def avail_dept_list(request):
 
         return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
-def avail_category_for_dept_list(request):
 
-        dept = request.GET.get('dept','')
+class avail_category_for_dept_list(generics.ListAPIView):
 
-        cursor = connection.cursor()
-        cursor.execute("SELECT * FROM G5CMPE295.N_ALL_DEPT_PDT where prod_attr3 is not null and (product_department=%s)",[dept]);
+    serializer_class = AvailDeptSerializer
 
-        data = cursor.fetchall()
+    def get_queryset(self):
 
-        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+        dept = self.kwargs['dept']
+        return NAllDeptPdt.objects.filter(product_department=dept).exclude(prod_attr3__isnull=True)
 
-def avail_products_for_category(request):
 
-        subcategory = request.GET.get('subcategory','')
+class avail_products_for_category(generics.ListAPIView):
 
-        cursor = connection.cursor()
-        cursor.execute("SELECT * FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null and (product_subcategory=%s)",[subcategory]);
+    serializer_class = AvailProductsSerializer
 
-        data = cursor.fetchall()
+    def get_queryset(self):
 
-        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+        subcategory = self.kwargs['subcategory']
+        return NAvailProducts.objects.filter(product_subcategory=subcategory).exclude(prod_attr3__isnull=True)
+
+
+
 
 
 
@@ -272,6 +273,27 @@ class avail_products_for_category(generics.ListAPIView):
         subcategory = self.kwargs['subcategory']
         return NAvailProducts.objects.filter(product_subcategory=subcategory,prod_attr3__isnull=False)
 
+def avail_category_for_dept_list(request):
+
+        dept = request.GET.get('dept','')
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM G5CMPE295.N_ALL_DEPT_PDT where prod_attr3 is not null and (product_department=%s)",[dept]);
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+def avail_products_for_category(request):
+
+        subcategory = request.GET.get('subcategory','')
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null and (product_subcategory=%s)",[subcategory]);
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
 
 
