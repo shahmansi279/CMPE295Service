@@ -6,7 +6,7 @@ from serializers import ProductSerializer, CategorySerializer,AisleSerializer,Of
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-from django.db import connection
+from django.db import connection,IntegrityError
 import json
 
 
@@ -38,26 +38,31 @@ def register_view(request):
 
     username = request.GET.get('username','')
     password = request.GET.get('password','')
-    first_name = request.GET.get('first_name','')
-    last_name = request.GET.get('last_name','')
+    #first_name = request.GET.get('first_name','')
+    #last_name = request.GET.get('last_name','')
     email = request.GET.get('email','')
-    user_role = request.GET.get('user_role','')
-    user_class = request.GET.get('user_class','')
-    user_age = request.GET.get('user_age','')
-    user_cc_details = request.GET.get('user_cc_details','')
-    user_phone = request.GET.get('user_phone','')
     user_addr = request.GET.get('user_addr','')
+    user_zip = request.GET.get('user_zip','')
+    user_phone = request.GET.get('user_phone','')
+    user_dob = request.GET.get('user_dob','')
+    user_gender = request.GET.get('user_gender','')
 
-    user = User.objects.create_user(username, email, password)
+    try:
 
+        user = User.objects.create_user(username, email, password)
+        e=NCustomer()
+        e.customer=user
+        #e.fname=first_name
+        #e.lname=last_name
+        e.address1 = user_addr
+        e.postal_code = user_zip
+        e.phone1 = user_phone
+        e.birthdate = user_dob
+        e.gender = user_gender
+        e.save()
+        return JsonResponse({'status': 'success'})
 
-    e=NCustomer()
-    e.customer=user
-    e.fname=first_name
-    e.lname=last_name
-    e.save()
-
-    return JsonResponse({'status': 'success'})
+    except IntegrityError: return JsonResponse({'status': 'error'})
 
 
 def resetPassword_view(request):
@@ -70,7 +75,7 @@ def resetPassword_view(request):
         user.save()
         return JsonResponse({'status': 'success'})
     except User.DoesNotExist: return JsonResponse({'status': 'error'})
-
+    
 
 ''' ------Login and Register functions ends---------------------'''
 
