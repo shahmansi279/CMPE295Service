@@ -75,7 +75,7 @@ def resetPassword_view(request):
         user.save()
         return JsonResponse({'status': 'success'})
     except User.DoesNotExist: return JsonResponse({'status': 'error'})
-    
+
 
 ''' ------Login and Register functions ends---------------------'''
 
@@ -120,7 +120,7 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 def avail_dept_list(request):
 
         cursor = connection.cursor()
-        cursor.execute("SELECT DISTINCT(product_department) FROM G5CMPE295.N_ALL_DEPT_PDT where prod_attr3 is not null");
+        cursor.execute("SELECT DISTINCT(product_department) FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null");
 
         data = cursor.fetchall()
 
@@ -132,7 +132,7 @@ def avail_category_for_dept_list(request):
         dept = request.GET.get('dept','')
 
         cursor = connection.cursor()
-        cursor.execute("SELECT DISTINCT (product_subcategory) FROM G5CMPE295.N_ALL_DEPT_PDT where prod_attr3 is not null and (product_department=%s)",[dept]);
+        cursor.execute("SELECT DISTINCT (product_subcategory) FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null and (product_department=%s)",[dept]);
 
         data = cursor.fetchall()
 
