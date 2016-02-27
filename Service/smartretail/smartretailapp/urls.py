@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 
 
     url(r'^api/depts/$', views.avail_dept_list),
-    url(r'^api/subcategory/(?P<dept>.+)/$', views.avail_category_for_dept_list.as_view()),
+    url(r'^api/subcategory/$', views.avail_category_for_dept_list),
     url(r'^api/products/(?P<subcategory>.+)/$', views.avail_products_for_category.as_view()),
 
 

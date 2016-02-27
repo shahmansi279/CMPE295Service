@@ -122,14 +122,17 @@ def avail_dept_list(request):
         return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
 
-class avail_category_for_dept_list(generics.ListAPIView):
+def avail_category_for_dept_list(request):
 
-    serializer_class = AvailDeptSerializer
+        dept = request.GET.get('dept','')
 
-    def get_queryset(self):
+        cursor = connection.cursor()
+        cursor.execute("SELECT DISTINCT (product_subcategory) FROM G5CMPE295.N_ALL_DEPT_PDT where prod_attr3 is not null and (product_department=%s)",[dept]);
 
-        dept = self.kwargs['dept']
-        return NAllDeptPdt.objects.filter(product_department=dept).exclude(prod_attr3__isnull=True)
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
 
 
 class avail_products_for_category(generics.ListAPIView):
@@ -140,10 +143,6 @@ class avail_products_for_category(generics.ListAPIView):
 
         subcategory = self.kwargs['subcategory']
         return NAvailProducts.objects.filter(product_subcategory=subcategory).exclude(prod_attr3__isnull=True)
-
-
-
-
 
 
 ''' Fetches available department (selected)  , category and product list ends '''
@@ -296,6 +295,19 @@ def avail_products_for_category(request):
         return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
 
+
+
+class avail_category_for_dept_list(generics.ListAPIView):
+
+    serializer_class = AvailDeptSerializer
+
+    def get_queryset(self):
+
+        dept = self.kwargs['dept']
+        return NAvailProducts.objects.filter(product_department=dept).exclude(prod_attr3__isnull=True)
+
+
+ url(r'^api/subcategory/(?P<dept>.+)/$', views.avail_category_for_dept_list.as_view()),
 
 '''
 
