@@ -1,14 +1,82 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework import generics
-from models import NProduct,NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay
-from serializers import ProductSerializer, CategorySerializer,AisleSerializer,OfferSerializer,CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer
+from models import NProduct,NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay,NAllDeptPdt,NAvailProducts
+from serializers import ProductSerializer, CategorySerializer,AisleSerializer,OfferSerializer,CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-from django.core import serializers
 from django.db import connection
 import json
+
+
+
+''' ------Login and Register functions starts----------------------------------------------'''
+
+def login_view(request):
+
+    username = request.GET.get('username','')
+    password = request.GET.get('password','')
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return JsonResponse({'status': 'success'})
+
+        else: return JsonResponse({'status': 'error: disabled account'})
+    else: return JsonResponse({'status': 'error: invalid credentials'})
+
+
+def logout_view(request):
+
+    logout(request)
+    return JsonResponse({'status': 'success'})
+
+
+
+def register_view(request):
+
+    username = request.GET.get('username','')
+    password = request.GET.get('password','')
+    first_name = request.GET.get('first_name','')
+    last_name = request.GET.get('last_name','')
+    email = request.GET.get('email','')
+    user_role = request.GET.get('user_role','')
+    user_class = request.GET.get('user_class','')
+    user_age = request.GET.get('user_age','')
+    user_cc_details = request.GET.get('user_cc_details','')
+    user_phone = request.GET.get('user_phone','')
+    user_addr = request.GET.get('user_addr','')
+
+    user = User.objects.create_user(username, email, password)
+
+
+    e=NCustomer()
+    e.customer=user
+    e.fname=first_name
+    e.lname=last_name
+    e.save()
+
+    return JsonResponse({'status': 'success'})
+
+
+def resetPassword_view(request):
+
+    username = request.GET.get('username','')
+    new_password = request.GET.get('new_password','')
+    try:
+        user = User.objects.get(username=username)
+        user.set_password(new_password)
+        user.save()
+        return JsonResponse({'status': 'success'})
+    except User.DoesNotExist: return JsonResponse({'status': 'error'})
+
+
+''' ------Login and Register functions ends---------------------'''
+
+
+
+''' Fetches complete category and product list starts '''
 
 class CategoryList(generics.ListCreateAPIView):
 
@@ -37,14 +105,50 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset=NProduct.objects.all()
     serializer_class=ProductSerializer
 
+''' Fetches complete category  and product list ends'''
 
-class ProductFilter(generics.ListAPIView):
-    serializer_class = ProductSerializer
+''' ----------------------------------------------------'''
 
-    def get_queryset(self):
 
-        category = self.kwargs['category']
-        return NProduct.objects.filter(product_class=category)
+''' Fetches available (selected)  department, category and product list starts '''
+
+def avail_dept_list(request):
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT DISTINCT(product_department) FROM G5CMPE295.N_ALL_DEPT_PDT where prod_attr3 is not null");
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+def avail_category_for_dept_list(request):
+
+        dept = request.GET.get('dept','')
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM G5CMPE295.N_ALL_DEPT_PDT where prod_attr3 is not null and (product_department=%s)",[dept]);
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+def avail_products_for_category(request):
+
+        subcategory = request.GET.get('subcategory','')
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null and (product_subcategory=%s)",[subcategory]);
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+
+
+''' Fetches available department (selected)  , category and product list ends '''
+
+
+''' ----------------------------------------------------'''
 
 class SensorList(generics.ListCreateAPIView):
 
@@ -122,78 +226,17 @@ class ProductStoreDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset=NProdStore.objects.all()
     serializer_class=ProductStoreSerializer
-    
-    
-def login_view(request):
-
-    username = request.GET.get('username','')
-    password = request.GET.get('password','')
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            return JsonResponse({'status': 'success'})
-
-        else: return JsonResponse({'status': 'error: disabled account'})
-    else: return JsonResponse({'status': 'error: invalid credentials'})
-
-
-def logout_view(request):
-
-    logout(request)
-    return JsonResponse({'status': 'success'})
 
 
 
-def register_view(request):
-
-    username = request.GET.get('username','')
-    password = request.GET.get('password','')
-    first_name = request.GET.get('first_name','')
-    last_name = request.GET.get('last_name','')
-    email = request.GET.get('email','')
-    user_role = request.GET.get('user_role','')
-    user_class = request.GET.get('user_class','')
-    user_age = request.GET.get('user_age','')
-    user_cc_details = request.GET.get('user_cc_details','')
-    user_phone = request.GET.get('user_phone','')
-    user_addr = request.GET.get('user_addr','')
-
-    user = User.objects.create_user(username, email, password)
-
-
-    e=NCustomer()
-    e.customer=user
-    e.fname=first_name
-    e.lname=last_name
-    e.save()
-
-    return JsonResponse({'status': 'success'})
-
-
-def resetPassword_view(request):
-
-    username = request.GET.get('username','')
-    new_password = request.GET.get('new_password','')
-    try:
-        user = User.objects.get(username=username)
-        user.set_password(new_password)
-        user.save()
-        return JsonResponse({'status': 'success'})
-    except User.DoesNotExist: return JsonResponse({'status': 'error'})
+''' ------------------------------------------------------------'''
 
 ''' Fetches the distinct category and image for the category '''
 
 
-def category_list(self):
-
-        cursor = connection.cursor()
-        cursor.execute("SELECT DISTINCT product_department , prodclass_attr1 FROM G5CMPE295.N_PRODUCT_CLASS")
-        data = cursor.fetchall()
-
-        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
 
+'''
 def product_list_for_category(request):
 
         category_name = request.GET.get('category','')
@@ -210,8 +253,29 @@ def product_list_for_category(request):
         return HttpResponse(json.dumps(product_data), content_type='application/json;charset=utf8')
 
 
+class avail_category_for_dept_list(generics.ListAPIView):
+
+    serializer_class = AvailDeptSerializer
+
+    def get_queryset(self):
+
+        dept = self.kwargs['dept']
+        return NAllDeptPdt.objects.filter(product_department=dept,prod_attr3__isnull=False)
 
 
+class avail_products_for_category(generics.ListAPIView):
+
+    serializer_class = AvailProductsSerializer
+
+    def get_queryset(self):
+
+        subcategory = self.kwargs['subcategory']
+        return NAvailProducts.objects.filter(product_subcategory=subcategory,prod_attr3__isnull=False)
+
+
+
+
+'''
 
 
 # Create your views here.

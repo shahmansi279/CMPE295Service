@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import NProduct, NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay
+from models import NProduct, NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay,NAvailProducts,NAllDeptPdt
 
 class CategorySerializer(serializers.ModelSerializer):
 
@@ -38,6 +38,26 @@ class OfferSerializer (serializers.ModelSerializer):
         model=NOffers
 
         field=('id','offer_id')
+
+
+class AvailProductsSerializer(serializers.ModelSerializer):
+
+
+
+    class Meta:
+        model=NAvailProducts
+
+        field=('product_class_id')
+
+
+class AvailDeptSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model=NAllDeptPdt
+
+        field=('id','product_class_id')
+
 
 
 class CustomerSerializer(serializers.ModelSerializer):

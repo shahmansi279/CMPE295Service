@@ -25,6 +25,43 @@ class NAisle(models.Model):
         db_table = 'N_AISLE'
 
 
+class NAllDeptPdt(models.Model):
+    product_class_id = models.IntegerField()
+    product_department = models.CharField(max_length=30, blank=True, null=True)
+    product_subcategory = models.CharField(max_length=30, blank=True, null=True)
+    product_id = models.IntegerField()
+    product_name = models.CharField(max_length=60)
+    sku = models.BigIntegerField()
+    brand_name = models.CharField(max_length=60, blank=True, null=True)
+    prod_attr1 = models.CharField(max_length=1000, blank=True, null=True)
+    prod_attr2 = models.CharField(max_length=1000, blank=True, null=True)
+    prod_attr3 = models.IntegerField(blank=True, null=True)
+    prod_attr4 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'N_ALL_DEPT_PDT'
+
+
+class NAvailProducts(models.Model):
+    product_class_id = models.IntegerField()
+    product_department = models.CharField(max_length=30, blank=True, null=True)
+    product_subcategory = models.CharField(max_length=30, blank=True, null=True)
+    product_id = models.IntegerField()
+    product_name = models.CharField(max_length=60)
+    sku = models.BigIntegerField()
+    brand_name = models.CharField(max_length=60, blank=True, null=True)
+    prod_attr1 = models.CharField(max_length=1000, blank=True, null=True)
+    prod_attr2 = models.CharField(max_length=1000, blank=True, null=True)
+    prod_attr3 = models.IntegerField(blank=True, null=True)
+    prod_attr4 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'N_AVAIL_PRODUCTS'
+
+
+
 class NCustomer(models.Model):
 
     customer = models.OneToOneField(User, on_delete=models.CASCADE ,primary_key=True)
@@ -58,8 +95,10 @@ class NCustomer(models.Model):
     fullname = models.CharField(max_length=60,null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'N_CUSTOMER'
+
+
 
 
 class NOffers(models.Model):
@@ -72,7 +111,7 @@ class NOffers(models.Model):
     offer_type = models.CharField(max_length=45, blank=True, null=True)
     offer_desc = models.CharField(max_length=200, blank=True, null=True)
     offer_title = models.CharField(max_length=200, blank=True, null=True)
-    offer_img_url = models.ImageField(max_length=500, upload_to='img', blank=True, null=True)
+    offer_img_url = models.ImageField(max_length=500, blank=True, null=True)
     offer_img = models.TextField(blank=True, null=True)
     offer_customer_class = models.CharField(max_length=45, blank=True, null=True)
     offer_customer_id = models.IntegerField(blank=True, null=True)
@@ -87,6 +126,9 @@ class NOffers(models.Model):
     class Meta:
         managed = False
         db_table = 'N_OFFERS'
+
+
+
 
 
 class NProduct(models.Model):
@@ -143,7 +185,7 @@ class NProdStore(models.Model):
     product = models.ForeignKey(NProduct, blank=True, null=True)
     product_name = models.CharField(max_length=60, blank=True, null=True)
     product_class = models.ForeignKey(NProductClass, blank=True, null=True)
-    product_img_url = models.ImageField(max_length=500, upload_to='img', blank=True, null=True)
+    product_img_url = models.ImageField(max_length=500, blank=True, null=True)
     product_image = models.CharField(max_length=45, blank=True, null=True)
     product_count_available = models.IntegerField(blank=True, null=True)
     prod_store_aisle = models.ForeignKey(NAisle, blank=True, null=True)
