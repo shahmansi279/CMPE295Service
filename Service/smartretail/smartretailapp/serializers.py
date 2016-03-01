@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from models import NProduct, NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay,NAvailProducts,NAllDeptPdt
+from django.contrib.auth.models import User
 
 class CategorySerializer(serializers.ModelSerializer):
 
@@ -57,6 +58,17 @@ class AvailDeptSerializer(serializers.ModelSerializer):
         model=NAllDeptPdt
 
         field=('id','product_class_id')
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+
+
+    class Meta:
+        model=User
+
+        field=('id','username')
+
 
 
 

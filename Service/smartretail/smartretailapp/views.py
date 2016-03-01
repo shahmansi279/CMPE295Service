@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework import generics
 from models import NProduct,NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay,NAllDeptPdt,NAvailProducts
-from serializers import ProductSerializer, CategorySerializer,AisleSerializer,OfferSerializer,CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
+from serializers import ProductSerializer, CategorySerializer, AisleSerializer, OfferSerializer, UserSerializer, CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
@@ -21,7 +21,7 @@ def login_view(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            return JsonResponse({'status': 'success'})
+            return JsonResponse({'status': user})
 
         else: return JsonResponse({'status': 'error: disabled account'})
     else: return JsonResponse({'status': 'error: invalid credentials'})
@@ -38,8 +38,6 @@ def register_view(request):
 
     username = request.GET.get('username','')
     password = request.GET.get('password','')
-    #first_name = request.GET.get('first_name','')
-    #last_name = request.GET.get('last_name','')
     email = request.GET.get('email','')
     user_addr = request.GET.get('user_addr','')
     user_zip = request.GET.get('user_zip','')
@@ -52,8 +50,6 @@ def register_view(request):
         user = User.objects.create_user(username, email, password)
         e=NCustomer()
         e.customer=user
-        #e.fname=first_name
-        #e.lname=last_name
         e.address1 = user_addr
         e.postal_code = user_zip
         e.phone1 = user_phone
@@ -187,6 +183,20 @@ class OfferDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset=NOffers.objects.all()
     serializer_class=OfferSerializer
+
+
+class UserList(generics.ListCreateAPIView):
+
+    queryset=User.objects.all()
+    serializer_class=UserSerializer
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+
+    queryset=User.objects.all()
+    serializer_class=UserSerializer
+
+
 
 class CustomerList(generics.ListCreateAPIView):
 
