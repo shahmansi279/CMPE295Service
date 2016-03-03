@@ -5,7 +5,7 @@ from models import NProduct,NProductClass, NAisle, NOffers, NCustomer, NSensors,
 from serializers import ProductSerializer, CategorySerializer, AisleSerializer, OfferSerializer, UserSerializer, CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-
+from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection,IntegrityError
 import json
 
@@ -21,7 +21,7 @@ def login_view(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            return JsonResponse({'status': user})
+            return JsonResponse({'status': 'success','id': user.id, 'username': user.username, 'email': user.email})
 
         else: return JsonResponse({'status': 'error: disabled account'})
     else: return JsonResponse({'status': 'error: invalid credentials'})
@@ -191,12 +191,26 @@ class UserList(generics.ListCreateAPIView):
     serializer_class=UserSerializer
 
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserDetail(generics.ListCreateAPIView):
 
-    queryset=User.objects.all()
     serializer_class=UserSerializer
+    def get_queryset(self):
+        username = self.kwargs['username']
+        return User.objects.filter(username=username)
 
+'''
+def account_details(request):
 
+        username = request.GET.get('username','')
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM G5CMPE295.auth_user, G5CMPE295.N_CUSTOMER WHERE G5CMPE295.auth_user.id=G5CMPE295.N_CUSTOMER.customer_id and auth_user.username=%s",[username]);
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type='application/json;charset=utf8')
+
+'''
 
 class CustomerList(generics.ListCreateAPIView):
 
