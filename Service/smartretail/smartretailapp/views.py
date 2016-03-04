@@ -116,7 +116,7 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 def avail_dept_list(request):
 
         cursor = connection.cursor()
-        cursor.execute("SELECT DISTINCT(product_department) FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null");
+        cursor.execute("SELECT DISTINCT(product_department) FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null ORDER BY product_department asc ");
 
         data = cursor.fetchall()
 
