@@ -128,7 +128,7 @@ def avail_category_for_dept_list(request):
         dept = request.GET.get('dept','')
 
         cursor = connection.cursor()
-        cursor.execute("SELECT DISTINCT (product_subcategory) FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null and (product_department=%s)",[dept]);
+        cursor.execute("SELECT DISTINCT (product_subcategory) FROM G5CMPE295.N_AVAIL_PRODUCTS where prod_attr3 is not null and (product_department=%s) ORDER BY product_subcategory asc ",[dept]);
 
         data = cursor.fetchall()
 
