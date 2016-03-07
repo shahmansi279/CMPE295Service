@@ -55,6 +55,21 @@ class NAvailProducts(models.Model):
     prod_attr2 = models.CharField(max_length=1000, blank=True, null=True)
     prod_attr3 = models.IntegerField(blank=True, null=True)
     prod_attr4 = models.FloatField(blank=True, null=True)
+    product_desc = models.CharField(max_length=60, blank=True, null=True)
+    srp = models.DecimalField(db_column='SRP', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    gross_weight = models.FloatField(blank=True, null=True)
+    net_weight = models.FloatField(blank=True, null=True)
+    recyclable_package = models.IntegerField(blank=True, null=True)
+    low_fat = models.IntegerField(blank=True, null=True)
+    units_per_case = models.SmallIntegerField(blank=True, null=True)
+    cases_per_pallet = models.SmallIntegerField(blank=True, null=True)
+    shelf_width = models.FloatField(blank=True, null=True)
+    shelf_height = models.FloatField(blank=True, null=True)
+    shelf_depth = models.FloatField(blank=True, null=True)
+    product_price = models.FloatField(blank=True, null=True)
+    product_img1_url = models.ImageField(max_length=500, blank=True, null=True)
+    product_img2_url = models.ImageField(max_length=500, blank=True, null=True)
+    product_img3_url = models.ImageField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
