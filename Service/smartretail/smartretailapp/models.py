@@ -61,6 +61,42 @@ class NAvailProducts(models.Model):
         db_table = 'N_AVAIL_PRODUCTS'
 
 
+class NCartInfo(models.Model):
+    cart_id = models.IntegerField(primary_key=True)
+    cart_desc = models.CharField(max_length=200, blank=True, null=True)
+    cart_status = models.CharField(max_length=45, blank=True, null=True)
+    cart_item_count = models.IntegerField(blank=True, null=True)
+    cart_name = models.CharField(max_length=100, blank=True, null=True)
+    cart_customer_id = models.IntegerField()
+    cart_attr1 = models.CharField(max_length=1000, blank=True, null=True)
+    cart_attr2 = models.CharField(max_length=1000, blank=True, null=True)
+    cart_attr3 = models.IntegerField(blank=True, null=True)
+    cart_attr4 = models.FloatField(blank=True, null=True)
+    cart_attr5 = models.DateTimeField(blank=True, null=True)
+    cart_attr6 = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'N_CART_INFO'
+
+
+class NCartPrd(models.Model):
+    cart_product_id = models.IntegerField(primary_key=True)
+    cart_id = models.IntegerField()
+    cart_desc = models.CharField(max_length=200, blank=True, null=True)
+    product_id = models.IntegerField(blank=True, null=True)
+    product_qty = models.IntegerField(blank=True, null=True)
+    cart_prd_attr1 = models.CharField(max_length=1000, blank=True, null=True)
+    cart_prd_attr2 = models.CharField(max_length=1000, blank=True, null=True)
+    cart_prd_attr3 = models.IntegerField(blank=True, null=True)
+    cart_prd_attr4 = models.FloatField(blank=True, null=True)
+    cart_prd_attr5 = models.DateTimeField(blank=True, null=True)
+    cart_prd_attr6 = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'N_CART_PRD'
+
 
 class NCustomer(models.Model):
 
@@ -99,6 +135,41 @@ class NCustomer(models.Model):
         db_table = 'N_CUSTOMER'
 
 
+class NListInfo(models.Model):
+    list_id = models.IntegerField(primary_key=True)
+    list_desc = models.CharField(max_length=200, blank=True, null=True)
+    list_status = models.CharField(max_length=45, blank=True, null=True)
+    list_item_count = models.IntegerField(blank=True, null=True)
+    list_name = models.CharField(max_length=100, blank=True, null=True)
+    list_customer_id = models.IntegerField()
+    list_attr1 = models.CharField(max_length=1000, blank=True, null=True)
+    list_attr2 = models.CharField(max_length=1000, blank=True, null=True)
+    list_attr3 = models.IntegerField(blank=True, null=True)
+    list_attr4 = models.FloatField(blank=True, null=True)
+    list_attr5 = models.DateTimeField(blank=True, null=True)
+    list_attr6 = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'N_LIST_INFO'
+
+
+class NListPrd(models.Model):
+    list_product_id = models.IntegerField(primary_key=True)
+    list_id = models.IntegerField()
+    list_desc = models.CharField(max_length=200, blank=True, null=True)
+    product_id = models.IntegerField(blank=True, null=True)
+    product_qty = models.IntegerField(blank=True, null=True)
+    list_prd_attr1 = models.CharField(max_length=1000, blank=True, null=True)
+    list_prd_attr2 = models.CharField(max_length=1000, blank=True, null=True)
+    list_prd_attr3 = models.IntegerField(blank=True, null=True)
+    list_prd_attr4 = models.FloatField(blank=True, null=True)
+    list_prd_attr5 = models.DateTimeField(blank=True, null=True)
+    list_prd_attr6 = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'N_LIST_PRD'
 
 
 class NOffers(models.Model):

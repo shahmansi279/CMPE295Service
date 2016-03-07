@@ -24,6 +24,12 @@ urlpatterns = patterns('',
     url(r'^api/aisle/$', views.AisleList.as_view()),
     url(r'^api/aisle/(?P<pk>[0-9]+)/$', views.AisleDetail.as_view()),
 
+    url(r'^api/cart/$', views.CartList.as_view()),
+    url(r'^api/cart/(?P<pk>[0-9]+)/$', views.CartDetail.as_view()),
+
+    url(r'^api/list/$', views.ListList.as_view()),
+    url(r'^api/list/(?P<pk>[0-9]+)/$', views.ListDetail.as_view()),
+
     url(r'^api/offer/$', views.OfferList.as_view()),
     url(r'^api/offer/(?P<pk>[0-9]+)/$', views.OfferDetail.as_view()),
 

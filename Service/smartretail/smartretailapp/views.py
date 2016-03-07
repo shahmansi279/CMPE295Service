@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework import generics
-from models import NProduct,NProductClass, NAisle, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay,NAllDeptPdt,NAvailProducts
-from serializers import ProductSerializer, CategorySerializer, AisleSerializer, OfferSerializer, UserSerializer, CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
+from models import NProduct,NProductClass, NAisle, NListInfo, NListPrd, NCartInfo, NCartPrd, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay,NAllDeptPdt,NAvailProducts
+from serializers import ProductSerializer, CategorySerializer, ListSerializer, CartSerializer, AisleSerializer, OfferSerializer, UserSerializer, CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.serializers.json import DjangoJSONEncoder
@@ -172,6 +172,31 @@ class AisleDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset=NAisle.objects.all()
     serializer_class=AisleSerializer
+
+
+class CartList(generics.ListCreateAPIView):
+
+    queryset=NCartInfo.objects.all()
+    serializer_class=CartSerializer
+
+
+class CartDetail(generics.RetrieveUpdateDestroyAPIView):
+
+    queryset=NCartInfo.objects.all()
+    serializer_class=CartSerializer
+
+
+class ListList(generics.ListCreateAPIView):
+
+    queryset=NListInfo.objects.all()
+    serializer_class=ListSerializer
+
+
+class ListDetail(generics.RetrieveUpdateDestroyAPIView):
+
+    queryset=NListInfo.objects.all()
+    serializer_class=ListSerializer
+
 
 class OfferList(generics.ListCreateAPIView):
 
