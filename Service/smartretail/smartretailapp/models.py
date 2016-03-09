@@ -55,7 +55,7 @@ class NAvailProducts(models.Model):
     prod_attr2 = models.CharField(max_length=1000, blank=True, null=True)
     prod_attr3 = models.IntegerField(blank=True, null=True)
     prod_attr4 = models.FloatField(blank=True, null=True)
-    product_desc = models.CharField(max_length=60, blank=True, null=True)
+    product_desc = models.CharField(max_length=1000, null=True)
     srp = models.DecimalField(db_column='SRP', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
     gross_weight = models.FloatField(blank=True, null=True)
     net_weight = models.FloatField(blank=True, null=True)

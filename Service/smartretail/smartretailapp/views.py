@@ -10,10 +10,15 @@ from django.db import connection,IntegrityError
 import json
 
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 ''' ------Login and Register functions starts----------------------------------------------'''
 
 def login_view(request):
+
+
 
     username = request.GET.get('username','')
     password = request.GET.get('password','')
@@ -138,12 +143,23 @@ def avail_category_for_dept_list(request):
 
 class avail_products_for_category(generics.ListAPIView):
 
-    serializer_class = AvailProductsSerializer
+    try:
 
-    def get_queryset(self):
+        logger.debug("Entering store_id conditional block")
 
-        subcategory = self.kwargs['subcategory']
-        return NAvailProducts.objects.filter(product_subcategory=subcategory).exclude(prod_attr3__isnull=True)
+
+
+        serializer_class = AvailProductsSerializer
+
+        def get_queryset(self):
+
+            subcategory = self.kwargs['subcategory']
+            return NAvailProducts.objects.filter(product_subcategory=subcategory).exclude(prod_attr3__isnull=True)
+
+
+    except Exception, e:
+
+        logger.exception(e)
 
 
 ''' Fetches available department (selected)  , category and product list ends '''
@@ -208,6 +224,19 @@ class OfferDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset=NOffers.objects.all()
     serializer_class=OfferSerializer
+
+
+class OfferNearByList(generics.ListAPIView):
+
+    serializer_class=OfferSerializer
+
+    def get_queryset(self):
+        zipcode = self.kwargs['zipcode']
+
+        return NOffers.objects.filter(offer_attr1=zipcode)
+
+
+
 
 
 class UserList(generics.ListCreateAPIView):
