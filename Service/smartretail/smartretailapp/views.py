@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from models import NProduct,NProductClass, NAisle, NListInfo, NListPrd, NCartInfo, NCartPrd, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay,NAllDeptPdt,NAvailProducts
-from serializers import ProductSerializer, CategorySerializer, ListSerializer, CartSerializer, AisleSerializer, OfferSerializer, UserSerializer, CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
+from serializers import ProductSerializer, CategorySerializer, ListSerializer, CartSerializer, CartPrdSerializer, AisleSerializer, OfferSerializer, UserSerializer, CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.serializers.json import DjangoJSONEncoder
@@ -219,8 +219,8 @@ class CartList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        user = self.get_object(pk)
-        user.delete()
+        cart = self.get_object(pk)
+        cart.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class CartDetail(APIView):
@@ -250,7 +250,50 @@ class CartDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class CartPrdList(APIView):
 
+    def get(self, request, format=None):
+        carts = NCartPrd.objects.all()
+        serializer = CartPrdSerializer(carts, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = CartPrdSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        cart = self.get_object(pk)
+        cart.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class CartPrdDetail(APIView):
+
+    def get_object(self, pk):
+        try:
+            return NCartPrd.objects.get(pk=pk)
+        except NCartPrd.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        cart = self.get_object(pk)
+        cart = CartPrdSerializer(cart)
+        return Response(cart.data)
+
+    def put(self, request, pk, format=None):
+        cart = self.get_object(pk)
+        serializer = CartPrdSerializer(cart, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        cart = self.get_object(pk)
+        cart.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ListList(generics.ListCreateAPIView):
 

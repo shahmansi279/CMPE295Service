@@ -45,7 +45,12 @@ class CartSerializer(serializers.ModelSerializer):
 
         field=('id','cart_id')
 
+class CartPrdSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model=NCartPrd
+
+        field=('id','cart_product_id')
 
 class OfferSerializer(serializers.ModelSerializer):
 
