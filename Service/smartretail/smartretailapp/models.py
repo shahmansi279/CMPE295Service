@@ -77,7 +77,7 @@ class NAvailProducts(models.Model):
 
 
 class NCartInfo(models.Model):
-    cart_id = models.IntegerField(primary_key=True)
+    cart_id = models.AutoField(primary_key=True)
     cart_desc = models.CharField(max_length=200, blank=True, null=True)
     cart_status = models.CharField(max_length=45, blank=True, null=True)
     cart_item_count = models.IntegerField(blank=True, null=True)
@@ -96,7 +96,7 @@ class NCartInfo(models.Model):
 
 
 class NCartPrd(models.Model):
-    cart_product_id = models.IntegerField(primary_key=True)
+    cart_product_id = models.AutoField(primary_key=True)
     cart_id = models.IntegerField()
     cart_desc = models.CharField(max_length=200, blank=True, null=True)
     product_id = models.IntegerField(blank=True, null=True)
