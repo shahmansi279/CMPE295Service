@@ -192,18 +192,8 @@ class AisleDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset=NAisle.objects.all()
     serializer_class=AisleSerializer
 
-'''
-class CartList(generics.ListCreateAPIView):
 
-    queryset=NCartInfo.objects.all()
-    serializer_class=CartSerializer
 
-class CartDetail(generics.RetrieveUpdateDestroyAPIView):
-
-    queryset=NCartInfo.objects.all()
-    serializer_class=CartSerializer
-
-'''
 class CartList(APIView):
 
     def get(self, request, format=None):
@@ -250,6 +240,22 @@ class CartDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+def cart_for_user(request):
+
+        cart_customer_id = request.GET.get('cart_customer_id','')
+        cursor = connection.cursor()
+        cursor.execute("select cart_id from G5CMPE295.N_CART_INFO where cart_customer_id=%s and cart_status='active'",[cart_customer_id]);
+        data = cursor.fetchall()
+
+        if cursor.rowcount == 0:
+
+            cursor = connection.cursor()
+            cartid = cursor.execute("INSERT INTO G5CMPE295.N_CART_INFO (cart_status, cart_customer_id) VALUES ('active', %s)",[cart_customer_id]);
+            return cartid
+
+        else:
+            return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
 class CartPrdList(APIView):
 
     def get(self, request, format=None):
@@ -268,6 +274,7 @@ class CartPrdList(APIView):
         cart = self.get_object(pk)
         cart.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class CartPrdDetail(APIView):
 
@@ -294,6 +301,7 @@ class CartPrdDetail(APIView):
         cart = self.get_object(pk)
         cart.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class ListList(generics.ListCreateAPIView):
 
@@ -327,7 +335,6 @@ class OfferNearByList(generics.ListAPIView):
         zipcode = self.kwargs['zipcode']
 
         return NOffers.objects.filter(offer_attr1=zipcode)
-
 
 
 
