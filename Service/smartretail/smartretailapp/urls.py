@@ -27,6 +27,7 @@ urlpatterns = patterns('',
     url(r'^api/cart/$', views.CartList.as_view()),
     url(r'^api/cart/(?P<pk>[0-9]+)/$', views.CartDetail.as_view()),
     url(r'^api/usercart/$', views.cart_for_user),
+    url(r'^api/usercartdetail/(?P<cart_id>.+)/$', views.UserCartDetail.as_view()),
 
     url(r'^api/cartprd/$', views.CartPrdList.as_view()),
     url(r'^api/cartprd/(?P<pk>[0-9]+)/$', views.CartPrdDetail.as_view()),

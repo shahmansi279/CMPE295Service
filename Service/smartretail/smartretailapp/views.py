@@ -303,6 +303,14 @@ class CartPrdDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class UserCartDetail(generics.ListCreateAPIView):
+
+    serializer_class=CartPrdSerializer
+    def get_queryset(self):
+        cart_id = self.kwargs['cart_id']
+        return NCartPrd.objects.filter(cart_id=cart_id)
+
+
 class ListList(generics.ListCreateAPIView):
 
     queryset=NListInfo.objects.all()
