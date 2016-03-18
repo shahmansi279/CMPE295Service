@@ -151,7 +151,7 @@ class NCustomer(models.Model):
 
 
 class NListInfo(models.Model):
-    list_id = models.IntegerField(primary_key=True)
+    list_id = models.AutoField(primary_key=True)
     list_desc = models.CharField(max_length=200, blank=True, null=True)
     list_status = models.CharField(max_length=45, blank=True, null=True)
     list_item_count = models.IntegerField(blank=True, null=True)
@@ -170,7 +170,7 @@ class NListInfo(models.Model):
 
 
 class NListPrd(models.Model):
-    list_product_id = models.IntegerField(primary_key=True)
+    list_product_id = models.AutoField(primary_key=True)
     list_id = models.IntegerField()
     list_desc = models.CharField(max_length=200, blank=True, null=True)
     product_id = models.IntegerField(blank=True, null=True)

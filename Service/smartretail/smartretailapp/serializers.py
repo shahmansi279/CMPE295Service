@@ -37,6 +37,12 @@ class ListSerializer(serializers.ModelSerializer):
 
         field=('id','list_id')
 
+class ListPrdSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=NListPrd
+
+        field=('id','list_product_id')
 
 class CartSerializer(serializers.ModelSerializer):
 
