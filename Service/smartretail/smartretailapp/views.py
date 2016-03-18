@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from models import NProduct,NProductClass, NAisle, NListInfo, NListPrd, NCartInfo, NCartPrd, NOffers, NCustomer, NSensors, NStore, NSalesFact1997, NProdStore, NTimeByDay,NAllDeptPdt,NAvailProducts
-from serializers import ProductSerializer, CategorySerializer, ListSerializer, CartSerializer, CartPrdSerializer, AisleSerializer, OfferSerializer, UserSerializer, CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
+from serializers import ProductSerializer, CategorySerializer, ListSerializer, ListPrdSerializer, CartSerializer, CartPrdSerializer, AisleSerializer, OfferSerializer, UserSerializer, CustomerSerializer,SensorSerializer,StoreSerializer,SalesFactSerializer,ProductStoreSerializer,AvailDeptSerializer,AvailProductsSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.serializers.json import DjangoJSONEncoder
@@ -322,6 +322,58 @@ class ListDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset=NListInfo.objects.all()
     serializer_class=ListSerializer
 
+class UserListDetail(generics.ListCreateAPIView):
+
+    serializer_class=ListPrdSerializer
+    def get_queryset(self):
+        list_id = self.kwargs['list_id']
+        return NListPrd.objects.filter(list_id=list_id)
+
+class ListPrdList(APIView):
+
+    def get(self, request, format=None):
+        Lists = NListPrd.objects.all()
+        serializer = ListPrdSerializer(Lists, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = ListPrdSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        List = self.get_object(pk)
+        List.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ListPrdDetail(APIView):
+
+    def get_object(self, pk):
+        try:
+            return NListPrd.objects.get(pk=pk)
+        except NListPrd.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        List = self.get_object(pk)
+        List = ListPrdSerializer(List)
+        return Response(List.data)
+
+    def put(self, request, pk, format=None):
+        List = self.get_object(pk)
+        serializer = ListPrdSerializer(List, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        List = self.get_object(pk)
+        List.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class OfferList(generics.ListCreateAPIView):
 

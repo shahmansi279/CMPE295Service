@@ -34,6 +34,10 @@ urlpatterns = patterns('',
 
     url(r'^api/list/$', views.ListList.as_view()),
     url(r'^api/list/(?P<pk>[0-9]+)/$', views.ListDetail.as_view()),
+    url(r'^api/userlistdetail/(?P<list_id>.+)/$', views.UserListDetail.as_view()),
+
+    url(r'^api/listprd/$', views.ListPrdList.as_view()),
+    url(r'^api/listprd/(?P<pk>[0-9]+)/$', views.ListPrdDetail.as_view()),
 
     url(r'^api/offer/$', views.OfferList.as_view()),
     url(r'^api/offer/(?P<pk>[0-9]+)/$', views.OfferDetail.as_view()),
