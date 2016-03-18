@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6d88851d-5f25-4ca4-8fc2-f69e74ccc273" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartretailapp/models.py" afterPath="$PROJECT_DIR$/smartretailapp/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartretailapp/urls.py" afterPath="$PROJECT_DIR$/smartretailapp/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartretailapp/views.py" afterPath="$PROJECT_DIR$/smartretailapp/views.py" />
     </list>
@@ -21,6 +20,13 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+  </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
@@ -33,14 +39,15 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/smartretailapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.939394">
-              <caret line="141" column="95" selection-start-line="141" selection-start-column="95" selection-end-line="141" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.87829614">
+              <caret line="436" column="0" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1456550065000" expanded="true" signature="3575:3669" placeholder="SELECT DISTI... N_ALL_DEPT_PDT" />
-                <marker date="1456550065000" expanded="true" signature="3575:3673" placeholder="SELECT DISTI... N_PRODUCT_CLASS" />
-                <marker date="1456550065000" expanded="true" signature="6670:6754" placeholder="SELECT produ... N_PRODUCT_CLASS" />
-                <marker date="1456550065000" expanded="true" signature="6883:6963" placeholder="SELECT produ... N_PRODUCT" />
+                <marker date="1458276937000" expanded="true" signature="4055:4183" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+                <marker date="1458276937000" expanded="true" signature="4465:4624" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+                <marker date="1458276937000" expanded="true" signature="7538:7630" placeholder="select cart_... N_CART_INFO" />
+                <marker date="1458276937000" expanded="true" signature="7799:7886" placeholder="INSERT INTO G5CMPE295.N_CART_INFO... " />
+                <marker date="1458276937000" expanded="true" signature="12677:12772" placeholder="SELECT prd_n... APT_CUST_FREQ_PURCHASES_ALL" />
               </folding>
             </state>
           </provider>
@@ -50,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/smartretailapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="15" column="79" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -58,11 +65,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/smartretailapp/migrations/__init__.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smartretail/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smartretail/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="0001_initial.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smartretailapp/migrations/0001_initial.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="10" selection-start-line="14" selection-start-column="8" selection-end-line="32" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smartretail/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smartretailapp/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -72,7 +119,7 @@
         <entry file="file://$PROJECT_DIR$/smartretailapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+              <caret line="316" column="0" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -84,10 +131,20 @@
         <entry file="file://$PROJECT_DIR$/smartretailapp/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
+              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smartretailapp/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,8 +164,8 @@
         <option value="$PROJECT_DIR$/smartretailapp/migrations/0002_nalldeptpdt_navailproducts_ncustomer.py" />
         <option value="$PROJECT_DIR$/smartretailapp/serializers.py" />
         <option value="$PROJECT_DIR$/smartretailapp/models.py" />
-        <option value="$PROJECT_DIR$/smartretailapp/urls.py" />
         <option value="$PROJECT_DIR$/smartretailapp/views.py" />
+        <option value="$PROJECT_DIR$/smartretailapp/urls.py" />
       </list>
     </option>
   </component>
@@ -118,9 +175,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="26" />
     <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="777" />
+    <option name="width" value="1414" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -148,6 +206,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -180,43 +239,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="media" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smartretail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smartretail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="smartretailapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smartretail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smartretail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smartretailapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -236,7 +259,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -458,23 +480,36 @@
       <option name="project" value="LOCAL" />
       <updated>1456539205128</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Committed Changes for Avail Products - Images and Description for Baked Goods and Beverages - Thiagu  @03/11/2016">
+      <created>1457727607713</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1457727607713</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Committed Changes for Avail Products - Images and Description Prod Id 288 - Thiagu  @03/11/2016">
+      <created>1457730417642</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1457730417642</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="777" extended-state="6" />
-    <editor active="true" />
+    <frame x="26" y="23" width="1414" height="877" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40234375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@smartretail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49435028" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3135705" sideWeight="0.51895046" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@smartretail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3135705" sideWeight="0.48104957" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934928" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25027686" sideWeight="0.47740525" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3680758" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944608" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -500,33 +535,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Committed Changes for Avail Products" />
-    <option name="LAST_COMMIT_MESSAGE" value="Committed Changes for Avail Products" />
+    <MESSAGE value="Committed Changes for Avail Products - Images and Description for Baked Goods and Beverages - Thiagu  @03/11/2016" />
+    <MESSAGE value="Committed Changes for Avail Products - Images and Description Prod Id 288 - Thiagu  @03/11/2016" />
+    <option name="LAST_COMMIT_MESSAGE" value="Committed Changes for Avail Products - Images and Description Prod Id 288 - Thiagu  @03/11/2016" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/smartretailapp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smartretailapp/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/smartretailapp/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -586,10 +605,11 @@
           <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1456550065000" expanded="true" signature="3575:3669" placeholder="SELECT DISTI... N_ALL_DEPT_PDT" />
-            <marker date="1456550065000" expanded="true" signature="3575:3673" placeholder="SELECT DISTI... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6670:6754" placeholder="SELECT produ... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6883:6963" placeholder="SELECT produ... N_PRODUCT" />
+            <marker date="1458276937000" expanded="true" signature="4055:4183" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="4465:4624" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="7538:7630" placeholder="select cart_... N_CART_INFO" />
+            <marker date="1458276937000" expanded="true" signature="7799:7886" placeholder="INSERT INTO G5CMPE295.N_CART_INFO... " />
+            <marker date="1458276937000" expanded="true" signature="12677:12772" placeholder="SELECT prd_n... APT_CUST_FREQ_PURCHASES_ALL" />
           </folding>
         </state>
       </provider>
@@ -670,10 +690,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1456550065000" expanded="true" signature="3575:3669" placeholder="SELECT DISTI... N_ALL_DEPT_PDT" />
-            <marker date="1456550065000" expanded="true" signature="3575:3673" placeholder="SELECT DISTI... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6670:6754" placeholder="SELECT produ... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6883:6963" placeholder="SELECT produ... N_PRODUCT" />
+            <marker date="1458276937000" expanded="true" signature="4055:4183" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="4465:4624" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="7538:7630" placeholder="select cart_... N_CART_INFO" />
+            <marker date="1458276937000" expanded="true" signature="7799:7886" placeholder="INSERT INTO G5CMPE295.N_CART_INFO... " />
+            <marker date="1458276937000" expanded="true" signature="12677:12772" placeholder="SELECT prd_n... APT_CUST_FREQ_PURCHASES_ALL" />
           </folding>
         </state>
       </provider>
@@ -754,10 +775,11 @@
           <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1456550065000" expanded="true" signature="3575:3669" placeholder="SELECT DISTI... N_ALL_DEPT_PDT" />
-            <marker date="1456550065000" expanded="true" signature="3575:3673" placeholder="SELECT DISTI... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6670:6754" placeholder="SELECT produ... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6883:6963" placeholder="SELECT produ... N_PRODUCT" />
+            <marker date="1458276937000" expanded="true" signature="4055:4183" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="4465:4624" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="7538:7630" placeholder="select cart_... N_CART_INFO" />
+            <marker date="1458276937000" expanded="true" signature="7799:7886" placeholder="INSERT INTO G5CMPE295.N_CART_INFO... " />
+            <marker date="1458276937000" expanded="true" signature="12677:12772" placeholder="SELECT prd_n... APT_CUST_FREQ_PURCHASES_ALL" />
           </folding>
         </state>
       </provider>
@@ -831,10 +853,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1456550065000" expanded="true" signature="3575:3669" placeholder="SELECT DISTI... N_ALL_DEPT_PDT" />
-            <marker date="1456550065000" expanded="true" signature="3575:3673" placeholder="SELECT DISTI... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6670:6754" placeholder="SELECT produ... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6883:6963" placeholder="SELECT produ... N_PRODUCT" />
+            <marker date="1458276937000" expanded="true" signature="4055:4183" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="4465:4624" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="7538:7630" placeholder="select cart_... N_CART_INFO" />
+            <marker date="1458276937000" expanded="true" signature="7799:7886" placeholder="INSERT INTO G5CMPE295.N_CART_INFO... " />
+            <marker date="1458276937000" expanded="true" signature="12677:12772" placeholder="SELECT prd_n... APT_CUST_FREQ_PURCHASES_ALL" />
           </folding>
         </state>
       </provider>
@@ -846,39 +869,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smartretail/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smartretailapp/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smartretail/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55641425">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smartretailapp/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7682119">
-          <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -893,34 +887,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smartretail/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smartretailapp/serializers.py">
+    <entry file="file://$PROJECT_DIR$/smartretail/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smartretail/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smartretailapp/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="10" selection-start-line="14" selection-start-column="8" selection-end-line="32" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/smartretailapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+          <caret line="316" column="0" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/smartretailapp/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smartretailapp/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smartretailapp/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/smartretailapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <caret line="15" column="79" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
@@ -929,14 +970,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/smartretailapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.939394">
-          <caret line="141" column="95" selection-start-line="141" selection-start-column="95" selection-end-line="141" selection-end-column="95" />
+        <state vertical-scroll-proportion="0.87829614">
+          <caret line="436" column="0" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1456550065000" expanded="true" signature="3575:3669" placeholder="SELECT DISTI... N_ALL_DEPT_PDT" />
-            <marker date="1456550065000" expanded="true" signature="3575:3673" placeholder="SELECT DISTI... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6670:6754" placeholder="SELECT produ... N_PRODUCT_CLASS" />
-            <marker date="1456550065000" expanded="true" signature="6883:6963" placeholder="SELECT produ... N_PRODUCT" />
+            <marker date="1458276937000" expanded="true" signature="4055:4183" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="4465:4624" placeholder="SELECT DISTI... N_AVAIL_PRODUCTS" />
+            <marker date="1458276937000" expanded="true" signature="7538:7630" placeholder="select cart_... N_CART_INFO" />
+            <marker date="1458276937000" expanded="true" signature="7799:7886" placeholder="INSERT INTO G5CMPE295.N_CART_INFO... " />
+            <marker date="1458276937000" expanded="true" signature="12677:12772" placeholder="SELECT prd_n... APT_CUST_FREQ_PURCHASES_ALL" />
           </folding>
         </state>
       </provider>

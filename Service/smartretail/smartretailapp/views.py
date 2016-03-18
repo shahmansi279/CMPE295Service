@@ -418,6 +418,24 @@ class ProductStoreDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset=NProdStore.objects.all()
     serializer_class=ProductStoreSerializer
 
+''' Fetches Frequently Purchased Items by the Customer _START_ - Thiagu '''
+''' ----------------------------------------------------'''
+def cust_freq_purchases_list(request):
+
+        cust = request.GET.get('cust','')
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT prd_name FROM G5CMPE295.APT_CUST_FREQ_PURCHASES_ALL WHERE cust_id=%s ORDER BY KOUNT desc ",[cust]);
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+''' Fetches Frequently Purchased Items by the Customer _END_ - Thiagu '''
+''' ----------------------------------------------------'''
+
+
+
 
 
 ''' ------------------------------------------------------------'''
