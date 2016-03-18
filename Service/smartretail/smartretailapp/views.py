@@ -329,6 +329,22 @@ class UserListDetail(generics.ListCreateAPIView):
         list_id = self.kwargs['list_id']
         return NListPrd.objects.filter(list_id=list_id)
 
+def list_for_user(request):
+
+        list_customer_id = request.GET.get('list_customer_id','')
+        cursor = connection.cursor()
+        cursor.execute("select list_id from G5CMPE295.N_LIST_INFO where list_customer_id=%s",[list_customer_id]);
+        data = cursor.fetchall()
+
+        if cursor.rowcount == 0:
+
+            cursor = connection.cursor()
+            listid = cursor.execute("INSERT INTO G5CMPE295.N_LIST_INFO (list_customer_id) VALUES (%s)",[list_customer_id]);
+            return listid
+
+        else:
+            return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
 class ListPrdList(APIView):
 
     def get(self, request, format=None):
