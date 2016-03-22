@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection,IntegrityError
+from django.views.decorators.csrf import ensure_csrf_cookie , csrf_protect
 import json
 
 
@@ -19,6 +20,9 @@ logger = logging.getLogger(__name__)
 
 ''' ------Login and Register functions starts----------------------------------------------'''
 
+
+
+@ensure_csrf_cookie
 def login_view(request):
 
 
@@ -201,6 +205,7 @@ class CartList(APIView):
         serializer = CartSerializer(carts, many=True)
         return Response(serializer.data)
 
+
     def post(self, request, format=None):
         serializer = CartSerializer(data=request.data)
         if serializer.is_valid():
@@ -263,6 +268,7 @@ class CartPrdList(APIView):
         serializer = CartPrdSerializer(carts, many=True)
         return Response(serializer.data)
 
+    
     def post(self, request, format=None):
         serializer = CartPrdSerializer(data=request.data)
         if serializer.is_valid():
@@ -391,6 +397,8 @@ class ListPrdDetail(APIView):
         List.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+
 class OfferList(generics.ListCreateAPIView):
 
     queryset=NOffers.objects.all()
@@ -401,7 +409,6 @@ class OfferDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset=NOffers.objects.all()
     serializer_class=OfferSerializer
-
 
 class OfferNearByList(generics.ListAPIView):
 
