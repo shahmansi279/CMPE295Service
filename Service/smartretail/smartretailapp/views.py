@@ -351,6 +351,24 @@ def list_for_user(request):
         else:
             return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
+
+
+def sensors_of_interest(request):
+
+        list_id = request.GET.get('list_id','')
+        cursor = connection.cursor()
+        cursor.execute("select DISTINCT product_department from G5CMPE295.N_LIST_PRD where list_id=%s",[list_id]);
+        data = cursor.fetchall()
+
+
+        for row in data:
+            cursor.execute("SELECT DISTINCT sensor_id FROM G5CMPE295.N_AISLE where aisle_name=%s",row)
+            aisle_data= cursor.fetchall()
+
+
+
+        return HttpResponse(json.dumps(aisle_data), content_type='application/json;charset=utf8')
+
 class ListPrdList(APIView):
 
     def get(self, request, format=None):

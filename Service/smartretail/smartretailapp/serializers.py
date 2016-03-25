@@ -20,14 +20,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 
-class AisleSerializer(serializers.ModelSerializer):
-
-    category=CategorySerializer
-
-    class Meta:
-        model=NAisle
-
-        field=('id','aisle_id')
 
 
 class ListSerializer(serializers.ModelSerializer):
@@ -39,6 +31,7 @@ class ListSerializer(serializers.ModelSerializer):
 
 class ListPrdSerializer(serializers.ModelSerializer):
 
+    product = ProductSerializer
     class Meta:
         model=NListPrd
 
@@ -105,6 +98,17 @@ class SensorSerializer(serializers.ModelSerializer):
         model=NSensors
 
         field=('id','sensor_id')
+
+
+class AisleSerializer(serializers.ModelSerializer):
+
+    aisle_sensor = SensorSerializer()
+
+    class Meta:
+        model=NAisle
+
+        field=('id','aisle_id' ,'aisle_sensor')
+
 
 
 class StoreSerializer(serializers.ModelSerializer):
