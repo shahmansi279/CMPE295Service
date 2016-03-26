@@ -198,6 +198,8 @@ class AisleDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+
+
 class CartList(APIView):
 
     def get(self, request, format=None):
@@ -357,17 +359,23 @@ def sensors_of_interest(request):
 
         list_id = request.GET.get('list_id','')
         cursor = connection.cursor()
-        cursor.execute("select DISTINCT product_department from G5CMPE295.N_LIST_PRD where list_id=%s",[list_id]);
+        cursor.execute("select DISTINCT list_prd_attr2 from G5CMPE295.N_LIST_PRD where list_id=%s",[list_id]);
         data = cursor.fetchall()
 
-
+        sensor_data =[]
+        fields = map(lambda x:x[0], cursor.description)
         for row in data:
-            cursor.execute("SELECT DISTINCT sensor_id FROM G5CMPE295.N_AISLE where aisle_name=%s",row)
-            aisle_data= cursor.fetchall()
+            cursor.execute("SELECT DISTINCT(aisle_sensor_id) FROM G5CMPE295.N_AISLE where aisle_name=%s",row)
+            aisle_data = cursor.fetchall()
+
+            for item in aisle_data:
+                cursor.execute("SELECT * FROM G5CMPE295.N_SENSORS where sensor_id=%s",item)
+                fields = map(lambda x:x[0], cursor.description)
+                #sensor_data.append(cursor.fetchall())
+                sensor_data.append([dict(zip(fields,row)) for row in cursor.fetchall()])
 
 
-
-        return HttpResponse(json.dumps(aisle_data), content_type='application/json;charset=utf8')
+        return HttpResponse(json.dumps(sensor_data), content_type='application/json;charset=utf8')
 
 class ListPrdList(APIView):
 
