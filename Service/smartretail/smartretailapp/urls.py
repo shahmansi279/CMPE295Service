@@ -43,6 +43,7 @@ urlpatterns = patterns('',
     url(r'^api/offer/$', views.OfferList.as_view()),
     url(r'^api/offer/(?P<pk>[0-9]+)/$', views.OfferDetail.as_view()),
     url(r'^api/offernearby/(?P<zipcode>.+)/$', views.OfferNearByList.as_view()),
+    url(r'^api/updateoffer/$', views.update_offer),
 
     url(r'^api/store/$', views.StoreList.as_view()),
     url(r'^api/store/(?P<pk>[0-9]+)/$', views.StoreDetail.as_view()),

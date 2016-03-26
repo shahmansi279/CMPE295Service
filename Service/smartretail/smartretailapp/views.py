@@ -446,6 +446,14 @@ class OfferNearByList(generics.ListAPIView):
         return NOffers.objects.filter(offer_attr1=zipcode)
 
 
+def update_offer(request):
+
+    offer_id = request.GET.get('offer_id','')
+    offer_end_date = request.GET.get('offer_end_date','')
+    offer = NOffers.objects.get(offer_id=offer_id)
+    offer.offer_end_date = offer_end_date
+    offer.save()
+    return JsonResponse({'status': 'success'})
 
 
 class UserList(generics.ListCreateAPIView):
