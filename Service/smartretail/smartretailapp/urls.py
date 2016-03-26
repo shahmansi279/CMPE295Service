@@ -44,6 +44,7 @@ urlpatterns = patterns('',
     url(r'^api/offer/$', views.OfferList.as_view()),
     url(r'^api/offer/(?P<pk>[0-9]+)/$', views.OfferDetail.as_view()),
     url(r'^api/offernearby/(?P<zipcode>.+)/$', views.OfferNearByList.as_view()),
+    url(r'^api/updateoffer/$', views.update_offer),
 
     url(r'^api/store/$', views.StoreList.as_view()),
     url(r'^api/store/(?P<pk>[0-9]+)/$', views.StoreDetail.as_view()),
@@ -62,6 +63,8 @@ urlpatterns = patterns('',
 
     url(r'^api/sensor/$', views.SensorList.as_view()),
     url(r'^api/sensor/(?P<pk>[0-9]+)/$', views.SensorDetail.as_view()),
+    url(r'^api/sensors_of_interest/$', views.sensors_of_interest),
+
 
     url(r'^api/sales/$', views.SalesFactList.as_view()),
     url(r'^api/sales/(?P<pk>[0-9]+)/$', views.SalesFactList.as_view()),

@@ -198,6 +198,8 @@ class AisleDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+
+
 class CartList(APIView):
 
     def get(self, request, format=None):
@@ -351,6 +353,30 @@ def list_for_user(request):
         else:
             return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
+
+
+def sensors_of_interest(request):
+
+        list_id = request.GET.get('list_id','')
+        cursor = connection.cursor()
+        cursor.execute("select DISTINCT list_prd_attr2 from G5CMPE295.N_LIST_PRD where list_id=%s",[list_id]);
+        data = cursor.fetchall()
+
+        sensor_data =[]
+        fields = map(lambda x:x[0], cursor.description)
+        for row in data:
+            cursor.execute("SELECT DISTINCT(aisle_sensor_id) FROM G5CMPE295.N_AISLE where aisle_name=%s",row)
+            aisle_data = cursor.fetchall()
+
+            for item in aisle_data:
+                cursor.execute("SELECT * FROM G5CMPE295.N_SENSORS where sensor_id=%s",item)
+                fields = map(lambda x:x[0], cursor.description)
+                #sensor_data.append(cursor.fetchall())
+                sensor_data.append([dict(zip(fields,row)) for row in cursor.fetchall()])
+
+
+        return HttpResponse(json.dumps(sensor_data), content_type='application/json;charset=utf8')
+
 class ListPrdList(APIView):
 
     def get(self, request, format=None):
@@ -420,6 +446,16 @@ class OfferNearByList(generics.ListAPIView):
         return NOffers.objects.filter(offer_attr1=zipcode)
 
 
+def update_offer(request):
+
+    offer_id = request.GET.get('offer_id','')
+    offer_end_date = request.GET.get('offer_end_date','')
+    try:
+        offer = NOffers.objects.get(offer_id=offer_id)
+        offer.offer_end_date = offer_end_date
+        offer.save()
+        return JsonResponse({'status': 'success'})
+    except NOffers.DoesNotExist: return JsonResponse({'status': 'error'})
 
 
 class UserList(generics.ListCreateAPIView):

@@ -19,10 +19,12 @@ class NAisle(models.Model):
     aisle_attr4 = models.FloatField(blank=True, null=True)
     aisle_attr5 = models.DateTimeField(blank=True, null=True)
     aisle_attr6 = models.DateTimeField(blank=True, null=True)
+    aisle_sensor = models.ForeignKey('NSensors', blank=True, null=True , related_name ='sensor')
 
     class Meta:
         managed = False
         db_table = 'N_AISLE'
+
 
 
 class NAllDeptPdt(models.Model):
@@ -302,6 +304,8 @@ class NSalesFact1997(models.Model):
         db_table = 'N_SALES_FACT_1997'
 
 
+
+
 class NSensors(models.Model):
     sensor_id = models.IntegerField(primary_key=True)
     sensor_name = models.CharField(max_length=100, blank=True, null=True)
@@ -316,10 +320,20 @@ class NSensors(models.Model):
     sensor_attr4 = models.FloatField(blank=True, null=True)
     sensor_attr5 = models.DateTimeField(blank=True, null=True)
     sensor_attr6 = models.DateTimeField(blank=True, null=True)
+    sensor_color = models.CharField(max_length=100, blank=True, null=True)
+    sensor_indoor_location = models.CharField(max_length=200, blank=True, null=True)
+    sensor_tag = models.CharField(max_length=200, blank=True, null=True)
+    sensor_uuid = models.CharField(max_length=100, blank=True, null=True)
+    sensor_mac_addr = models.CharField(max_length=45, blank=True, null=True)
+    sensor_major = models.IntegerField(blank=True, null=True)
+    sensor_minor = models.IntegerField(blank=True, null=True)
+
 
     class Meta:
         managed = False
         db_table = 'N_SENSORS'
+
+
 
 
 class NStore(models.Model):
