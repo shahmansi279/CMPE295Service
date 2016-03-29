@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     url(r'^api/subcategory/$', views.avail_category_for_dept_list),
     url(r'^api/products/(?P<subcategory>.+)/$', views.avail_products_for_category.as_view()),
     url(r'^api/freqpurcust/$', views.cust_freq_purchases_list),
+    url(r'^api/shelfsugglist/$', views.shelf_suggestions_list),
+
 
 
     url(r'^api/aisle/$', views.AisleList.as_view()),

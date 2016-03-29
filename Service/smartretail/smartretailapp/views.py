@@ -545,6 +545,23 @@ def cust_freq_purchases_list(request):
 ''' Fetches Frequently Purchased Items by the Customer _END_ - Thiagu '''
 ''' ----------------------------------------------------'''
 
+''' Fetches SHELF SUGGESTIONS for the Admin _START_ - Thiagu '''
+''' ----------------------------------------------------'''
+def shelf_suggestions_list(request):
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT FREQ_GROUPED_ITEMS FROM G5CMPE295.APT_SHELF_SUGGESTIONS ORDER BY CUST_COUNT desc, FREQ_GROUPED_ITEMS asc LIMIT  15");
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+''' Fetches SHELF SUGGESTIONS for the Admin _END_ - Thiagu '''
+''' ----------------------------------------------------'''
+
+
+
+
 
 
 
