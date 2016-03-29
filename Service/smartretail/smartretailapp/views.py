@@ -56,6 +56,7 @@ def register_view(request):
     user_phone = request.GET.get('user_phone','')
     user_dob = request.GET.get('user_dob','')
     user_gender = request.GET.get('user_gender','')
+    user_card = request.GET.get('user_card','')
 
     try:
 
@@ -67,6 +68,7 @@ def register_view(request):
         e.phone1 = user_phone
         e.birthdate = user_dob
         e.gender = user_gender
+        e.account_num = user_card
         e.save()
         return JsonResponse({'status': 'success'})
 
