@@ -536,13 +536,30 @@ def cust_freq_purchases_list(request):
         cust = request.GET.get('cust','')
 
         cursor = connection.cursor()
-        cursor.execute("SELECT prd_name FROM G5CMPE295.APT_CUST_FREQ_PURCHASES_ALL WHERE cust_id=%s ORDER BY KOUNT desc ",[cust]);
+        cursor.execute("SELECT COALESCE(GROUP_CONCAT(prd_name separator '\n\n'),'')  FROM G5CMPE295.APT_CUST_FREQ_PURCHASES_ALL WHERE cust_id=%s ORDER BY KOUNT desc, prd_name ASC ",[cust]);
 
         data = cursor.fetchall()
 
         return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
 ''' Fetches Frequently Purchased Items by the Customer _END_ - Thiagu '''
+''' ----------------------------------------------------'''
+
+''' Fetches NEXT IN BASKET for Admin _START_ - Thiagu '''
+''' ----------------------------------------------------'''
+def next_in_basket_list (request):
+
+        cust = request.GET.get('cust','')
+        productName = request.GET.get('product_name', '')
+
+        cursor = connection.cursor()
+        cursor.execute("SELECT coalesce(GROUP_CONCAT(PRODUCT_NAME separator '\n\n'),'') FROM G5CMPE295.APV_NEXT_IN_BASKET WHERE customer_id =%s AND product_name != %s  ORDER BY product_name asc ",[cust,productName]);
+
+        data = cursor.fetchall()
+
+        return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+''' Fetches NEXT IN BASKET for Admin _END_ - Thiagu '''
 ''' ----------------------------------------------------'''
 
 ''' Fetches SHELF SUGGESTIONS for the Admin _START_ - Thiagu '''
