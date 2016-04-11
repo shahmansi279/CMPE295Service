@@ -56,6 +56,7 @@ def register_view(request):
     user_phone = request.GET.get('user_phone','')
     user_dob = request.GET.get('user_dob','')
     user_gender = request.GET.get('user_gender','')
+    user_card = request.GET.get('user_card','')
 
     try:
 
@@ -67,6 +68,7 @@ def register_view(request):
         e.phone1 = user_phone
         e.birthdate = user_dob
         e.gender = user_gender
+        e.account_num = user_card
         e.save()
         return JsonResponse({'status': 'success'})
 
@@ -446,16 +448,14 @@ class OfferNearByList(generics.ListAPIView):
         return NOffers.objects.filter(offer_attr1=zipcode)
 
 
-def update_offer(request):
+def offer_code(request):
 
-    offer_id = request.GET.get('offer_id','')
-    offer_end_date = request.GET.get('offer_end_date','')
-    try:
-        offer = NOffers.objects.get(offer_id=offer_id)
-        offer.offer_end_date = offer_end_date
-        offer.save()
-        return JsonResponse({'status': 'success'})
-    except NOffers.DoesNotExist: return JsonResponse({'status': 'error'})
+    offercode = request.GET.get('offercode','')
+
+    cursor = connection.cursor()
+    cursor.execute("SELECT offer_attr3 FROM G5CMPE295.N_OFFERS WHERE offer_attr2=%s",[offercode]);
+    data = cursor.fetchall()
+    return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
 
 class UserList(generics.ListCreateAPIView):
