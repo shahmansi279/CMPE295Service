@@ -536,7 +536,7 @@ def cust_freq_purchases_list(request):
         cust = request.GET.get('cust','')
 
         cursor = connection.cursor()
-        cursor.execute("SELECT COALESCE(GROUP_CONCAT(prd_name separator '\r\r'),'')  FROM G5CMPE295.APT_CUST_FREQ_PURCHASES_ALL WHERE cust_id=%s ORDER BY KOUNT desc, prd_name ASC ",[cust]);
+        cursor.execute("SELECT COALESCE(GROUP_CONCAT(prd_name separator '\n\n'),'')  FROM G5CMPE295.APT_CUST_FREQ_PURCHASES_ALL WHERE cust_id=%s ORDER BY KOUNT desc, prd_name ASC ",[cust]);
 
         data = cursor.fetchall()
 
