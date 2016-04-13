@@ -251,6 +251,11 @@ class CartDetail(APIView):
 
 def cart_for_user(request):
 
+    try:
+
+        logger.debug(request)
+
+
         cart_customer_id = request.GET.get('cart_customer_id','')
         cursor = connection.cursor()
         cursor.execute("select cart_id from G5CMPE295.N_CART_INFO where cart_customer_id=%s and cart_status='active'",[cart_customer_id]);
@@ -264,6 +269,10 @@ def cart_for_user(request):
 
         else:
             return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
+
+    except Exception, e:
+
+        logger.exception(e)
 
 class CartPrdList(APIView):
 
