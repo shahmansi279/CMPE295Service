@@ -462,8 +462,9 @@ def offer_code(request):
     offercode = request.GET.get('offercode','')
 
     cursor = connection.cursor()
-    cursor.execute("SELECT offer_attr3 FROM G5CMPE295.N_OFFERS WHERE offer_attr2=%s",[offercode]);
+    cursor.execute("SELECT offer_attr3 FROM G5CMPE295.N_OFFERS WHERE offer_attr2=%s and offer_end_date>=NOW()",[offercode]);
     data = cursor.fetchall()
+    
     return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
 
