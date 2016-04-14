@@ -12,7 +12,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection,IntegrityError
 from django.views.decorators.csrf import ensure_csrf_cookie , csrf_protect
 import json
-
+import datetime
 
 import logging
 logger = logging.getLogger(__name__)
@@ -438,7 +438,8 @@ class ListPrdDetail(APIView):
 
 class OfferList(generics.ListCreateAPIView):
 
-    queryset=NOffers.objects.all()
+    today = datetime.datetime.today()
+    queryset= NOffers.objects.filter(offer_end_date__gte= today)
     serializer_class=OfferSerializer
 
 
@@ -453,8 +454,9 @@ class OfferNearByList(generics.ListAPIView):
 
     def get_queryset(self):
         zipcode = self.kwargs['zipcode']
+        today = datetime.datetime.today()
 
-        return NOffers.objects.filter(offer_attr1=zipcode)
+        return NOffers.objects.filter(offer_attr1=zipcode).exclude(offer_end_date__lt=today)
 
 
 def offer_code(request):
@@ -464,7 +466,7 @@ def offer_code(request):
     cursor = connection.cursor()
     cursor.execute("SELECT offer_attr3 FROM G5CMPE295.N_OFFERS WHERE offer_attr2=%s and offer_end_date>=NOW()",[offercode]);
     data = cursor.fetchall()
-    
+
     return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
 
 
