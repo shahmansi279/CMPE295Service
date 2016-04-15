@@ -264,8 +264,10 @@ def cart_for_user(request):
         if cursor.rowcount == 0:
 
             cursor = connection.cursor()
-            cartid = cursor.execute("INSERT INTO G5CMPE295.N_CART_INFO (cart_status, cart_customer_id) VALUES ('active', %s)",[cart_customer_id]);
-            return cartid
+            cursor.execute("INSERT INTO G5CMPE295.N_CART_INFO (cart_status, cart_customer_id) VALUES ('active', %s)",[cart_customer_id]);
+            cursor.execute("select cart_id from G5CMPE295.N_CART_INFO where cart_customer_id=%s and cart_status='active'",[cart_customer_id]);
+            data1 = cursor.fetchall()
+            return HttpResponse(json.dumps(data1), content_type='application/json;charset=utf8')
 
         else:
             return HttpResponse(json.dumps(data), content_type='application/json;charset=utf8')
